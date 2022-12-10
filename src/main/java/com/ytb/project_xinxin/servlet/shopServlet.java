@@ -68,10 +68,10 @@ public class shopServlet extends HttpServlet {
             idenitfity.setEmail(email);
             idenitfity.setPwd(pwd);
             service.add(idenitfity);
-
-            //添加到数据库
-
-
+        }
+        if (path.equals("/detail")){
+            req.getParameter("picture");
+            req.getParameter("name");
         }
     }
 }

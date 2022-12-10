@@ -120,20 +120,20 @@
     <div class="w shoes">
         <ul>
             <li>
-                <a href="#">
+                <a href="detail.jsp?picture=12.jpg&name=Aj1糖果果冻">
                     <img src="./img/shoes-boutique/12.jpg" >
 
-                    <p>AR&nbsp;JORDAN&nbsp;1&nbsp;Mid&nbsp;Aj1糖果果冻</p>
+                    <p>Aj1糖果果冻</p>
                     <p>钩&nbsp;水晶底女子篮球鞋</p>
                     <span>促销价：￥799.00元</span>
 
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="detail.jsp?picture=13.jpg&name=Aj1烟灰小Dior">
                     <img src="./img/shoes-boutique/13.jpg" >
                     <p>Air&nbsp;Jordan&nbsp;Mid&nbsp;Aj1烟灰小&nbsp;Dior</p>
-                    <p>灰白伯爵中帮</p>
+                    <p >灰白伯爵中帮</p>
                     <span>新新价：￥1299.00元</span>
                 </a>
             </li>
