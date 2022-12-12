@@ -4,6 +4,7 @@ package com.ytb.project_xinxin.servlet; /**
  */
 
 import com.ytb.project_xinxin.entity.Idenitfity;
+import com.ytb.project_xinxin.entity.goods;
 import com.ytb.project_xinxin.service.shopService;
 
 import javax.servlet.*;
@@ -16,7 +17,8 @@ public class shopServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");
-
+        //获取session对象
+        HttpSession session = req.getSession();
         //获得浏览器端的请求路径
         String urlString = req.getRequestURI();
         //将拿到的请求路径uri进行切割处理
@@ -52,6 +54,8 @@ public class shopServlet extends HttpServlet {
                 req.getRequestDispatcher("login.jsp").forward(req, resp);
                 return;
             }
+            //登陆对象的数据绑定到session对象中
+            session.setAttribute("e", idenitfity);
             resp.sendRedirect("index.jsp");
         }
         if (path.equals("/register")){
@@ -69,9 +73,20 @@ public class shopServlet extends HttpServlet {
             idenitfity.setPwd(pwd);
             service.add(idenitfity);
         }
-        if (path.equals("/detail")){
-            req.getParameter("picture");
-            req.getParameter("name");
+        if (path.equals("/cart")){
+//            Object obj = session.getAttribute("e");
+//            if (obj == null){
+//                resp.sendRedirect("login.do");
+//                return;
+//            }
+//            req.getParameter("picture");
+//            String name = req.getParameter("name");
+//            req.setAttribute("goodsname", name);
+//            goods goods = service.findByName(name);
+            req.getRequestDispatcher("cart.jsp").forward(req,resp);
+        }
+        if (path.equals("/detail")){;
+            req.getRequestDispatcher("detail.jsp").forward(req,resp);
         }
     }
 }

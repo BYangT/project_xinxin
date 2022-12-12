@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.ytb.project_xinxin.entity.Idenitfity" %><%--
   Created by IntelliJ IDEA.
   User: 20716
   Date: 2022/12/10
@@ -29,8 +29,16 @@
       <li class="second"><a href="#">X-KICKS&nbsp;APP</a></li>
     </ul>
     <ul class="header-right">
-      <li class="make"><a href="#">登陆</a></li>
-      <li class="login"><a href="#">注册</a></li>
+      <%
+        if (request.getParameter("user")!="1"){
+          String name = request.getParameter("user");
+      %>
+      <li class="make"><%=name%></li>
+      <li class="login"<input  type="button" style="width: 30px;height:0px" onclick="javascript:jump()" value="登出" class="btn-buy"/>登出</li>
+      <%} else {%>
+      <li class="make"><a href="http://localhost:8080/project_xinxin_war_exploded/login.do">登陆</a></li>
+      <li class="login"><a href="http://localhost:8080/project_xinxin_war_exploded/register.do">注册</a></li>
+      <%}%>
       <li>|</li>
       <li class="mi"><a href="#">订单</a></li>
       <li class="mi"><a href="#">收藏</a></li>
@@ -74,37 +82,35 @@
 </div>
 
 <!-- 中间内容 -->
-<div class="w content">
+<div class="w-content">
   <div class="box">
-
+    <div class="image-wrapper">
+      <img src="./img/shoes-boutique/<%=request.getParameter("picture")
+      %>" width = "400px">
+    </div>
   </div>
 
-  <div class="form">
+  <div class="form" >
 
-    <li>
-      <div class="image-wrapper">
-        <img src="./img/shoes-boutique/14.jpg"/>
-      </div>
-    </li>
-    <h1 style="margin-top: 20px;padding-left: 30px;font-size: 16px;color: #000000;">
-      NIKE&nbsp;KOBE&nbsp;1&nbsp;NCXL&nbsp;科比1&nbsp;科比4涂鸦五彩篮球鞋
-      <h1>
+    <h1 style="margin-top: 20px;padding-left: 30px;font-size: 16px;color: #000000;" class="h11">
+      <%=request.getParameter("name")%>
+    </h1>
         <ul class="one" style="height: 40px;">
           <li style="padding-left: 30px; display: inline-block; margin-top: 20px;color: #000000; font-size: 13px;">商品品牌：NIKE</li>
           <li class="right" style="padding-left: 30px; display: inline-block; margin-top: 20px; color: #000000; font-size: 13px;">商品货号：CV3469-001</li>
         </ul>
         <ul style="height: 40px;">
-          <li style="padding-left: 30px; display: inline-block;margin-top: 10px;color: #000000;
-	       font-size: 13px;">本店售价：<p style="display: inline-block;color: #e4393c;
+          <li style="padding-left: 30px; display: inline-block;margin-top: 20px;color: #000000;
+	       font-size: 20px;">本店售价：<p style="display: inline-block;color: #e4393c;
 	       font-size: 20px;">￥1549.00元</p></li>
-          <li class="right" style="padding-left: 30px;display: inline-block;margin-top: 10px;color: #000000;
-	       font-size: 13px;">vip会员：<p style="display: inline-block;color: #e4393c;font-size: 20px;">￥1499.00元</p></li>
+          <li class="right" style="padding-left: 30px;display: inline-block;margin-top: 20px;color: #000000;
+	       font-size: 13px;">vip会员：<p style="display: inline-block;color: #e4393c;font-size: 20px;">￥<%=request.getParameter("price")%>></p></li>
         </ul>
         <p style="height:20px;width:458px;margin-left:30px;margin-top: 10px;font-size:13px">促销价：
-          <span style="color: #ef2323; font-size: 20px;">￥1299元</span>
+          <span style="color: #ef2323; font-size: 20px;">￥<%=request.getParameter("price")%></span>
         </p>
         <p style="font-size: 13px;color: #000000;padding-left: 30px;margin-top: 20px;margin-bottom:10px;">所&nbsp;在&nbsp;地:&nbsp;&nbsp;浙江&nbsp;台州仓库<p>
-        <ul style="height: 40px;">
+        <ul class="two" style="height: 40px;">
           <li style="margin-left: 30px; display: inline-block;margin-top: 10px;color: #000000;
 	       font-size: 13px;">增值保障：</li>
           <li style="margin-left:10px;display: inline-block;color: #000000;
@@ -113,7 +119,7 @@
 	       font-size: 13px;">一年内意外换新￥19</li>
           <li style=" display: inline-block;margin-left:10px;color: #000000;
 	       font-size: 13px;">一年内全保换新￥39</li>
-          <ul>
+          <ul class="three">
             <span style="color: #000000;font-size: 13px;padding-left: 30px;float:left;margin-top:20px;">数量：</span>
             <input style="margin-top: 10px;margin-bottom:20px;float:left;width: 43px;height: 44px;" type="text" name="number" id="number" value="1" class="count" />
             <p style="float:left;display:inline-block;height:45;width:17px;">
@@ -122,11 +128,11 @@
               <input style="width: 17px;height: 24px;background-color:  #f1f1f1;color:#666666;;font-size: 14px;outline: none;border:0;"
                      type="button" value="+" class="btn-increase" />
             </p>
-            <input style="margin-top: 10px;margin-left:20px;width: 120px;height: 45px;background-color: red;outline: none;border:0;" type="button" name="" id="" value="加入购物车" class="btn-buy"/>
-            </ul>
+            <input style="margin-top: 10px;margin-left:20px;width: 120px;height: 45px;background-color: red;outline: none;border:0;" type="submit"
+                   onclick="javascript:jump()" value="加入购物车" class="btn-buy"/>
+          </ul>
         </ul>
-      </h1>
-      </h1>
+
   </div>
   <!-- 选项卡 -->
   <div class="shoe-right">
@@ -347,19 +353,30 @@
 <div class="footer-top">
   <a href="javascript:window.scrollTo(0,0)"><i class="iconfont icon-fanhuidingbu"></i>返回顶部</a>
 </div>
-<script type="text/javascript" src="../assets/js/jQuery-3.4.0.js">
+<%--<script type="text/javascript" src="../assets/js/jQuery-3.4.0.js">--%>
 
-</script>
-<script type="text/javascript" src="../assets/js/js-cookie.js">
+<%--</script>--%>
+<%--<script type="text/javascript" src="../assets/js/js-cookie.js">--%>
 
-</script>
-<script type="text/javascript" src="../assets/js/public.js">
+<%--</script>--%>
+<%--<script type="text/javascript" src="../assets/js/public.js">--%>
 
-</script>
-<script type="text/javascript" src="./js/detail.js">
-</script>
+<%--</script>--%>
+<%--&lt;%&ndash;<script type="text/javascript" src="./js/detail.js">&ndash;%&gt;--%>
+<%--&lt;%&ndash;</script>&ndash;%&gt;--%>
 
-<script type="text/javascript" src="../assets/js/menu.js">
+<%--<script type="text/javascript" src="../assets/js/menu.js">--%>
+<%--</script>--%>
+<script>
+  // let num = document.querySelector(".w-content .form .two .three .count")
+  // console.log(num.value)
+  function jump(){
+    let num = document.querySelector(".w-content .form .two .three .count")
+    let herf = "cart.do?name=<%=request.getParameter("name")
+      %>&pic=<%=request.getParameter("picture")%>&number="
+    let name = "&user=<%=request.getParameter("user")%>&price=<%=request.getParameter("price")%>"
+    window.location.href = herf + num.value + name;
+  }
 </script>
 </body>
 </html>

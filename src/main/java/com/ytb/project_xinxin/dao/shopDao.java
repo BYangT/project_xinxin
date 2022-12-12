@@ -84,7 +84,28 @@ public class shopDao {
             e.printStackTrace();
         }
         return idenitfity;
+    }
 
+    public Idenitfity findById(int id){
+        Idenitfity idenitfity = null;
+        //数据库连接
+        Connection connection = DBUtil.getConnection();
 
+        String sql = "select * from identifity where id=?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1,id);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()){
+                idenitfity =new Idenitfity();
+                idenitfity.setId(rs.getInt("id"));
+                idenitfity.setUser(rs.getString("user"));
+                idenitfity.setEmail(rs.getString("email"));
+                idenitfity.setPwd(rs.getString("pwd"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return idenitfity;
     }
 }

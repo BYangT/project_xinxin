@@ -39,13 +39,33 @@ public class shoesDao {
         }
         return goods;
     }
-    public goods fingByName(String name){
+    public goods findByName(String name){
         Connection connection = DBUtil.getConnection();
         String sql = "select * from goods where name = ?";
         goods goods = null;
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1,name);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()){
+                goods = new goods();
+                goods.setIdgoods(rs.getInt("idgoods"));
+                goods.setName(rs.getString("name"));
+                goods.setPic(rs.getString("pic"));
+                goods.setPrice(rs.getInt("price"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return goods;
+    }
+    public goods findById(int idgoods){
+        Connection connection = DBUtil.getConnection();
+        String sql = "select * from goods where idgoods = ?";
+        goods goods = null;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1,idgoods);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()){
                 goods = new goods();

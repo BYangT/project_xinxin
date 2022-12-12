@@ -1,4 +1,8 @@
-<%--
+<%@ page import="com.ytb.project_xinxin.entity.Idenitfity" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.ytb.project_xinxin.entity.goods" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.ytb.project_xinxin.service.shopService" %><%--
   Created by IntelliJ IDEA.
   User: 20716
   Date: 2022/12/9
@@ -28,8 +32,19 @@
             <li class="second"><a href="#">X-KICKS&nbsp;APP</a></li>
         </ul>
         <ul class="header-right">
+            <%
+                if (session.getAttribute("e") != null){
+                    Idenitfity idenitfity = (Idenitfity) session.getAttribute("e");
+                    session.setAttribute("e2", idenitfity);
+                    System.out.println(session.getAttribute("e2"));
+                    System.out.println(idenitfity.toString());
+            %>
+            <li class="make"><%=idenitfity.getUser()%></li>
+            <li class="login" input  type="button" style="width: 30px;height:0px" onclick="javascript:jump()" value="登出" class="btn-buy"/>登出</li>
+            <%} else {%>
             <li class="make"><a href="http://localhost:8080/project_xinxin_war_exploded/login.do">登陆</a></li>
             <li class="login"><a href="http://localhost:8080/project_xinxin_war_exploded/register.do">注册</a></li>
+            <%}%>
             <li>|</li>
             <li class="mi"><a href="../order_list/order_list.html">订单</a></li>
             <li class="mi"><a href="#">收藏</a></li>
@@ -45,13 +60,13 @@
         <li><img src="./img/logo.png"  alt="logo"></li>
         <li>
             <div >
-                <input type="text" name=""  value="" /><input type="button" name="" id="" value="搜索" />
+                <input type="text" name=""  value="" /><input type="button" name="" value="搜索" />
             </div>
         </li>
         <li>
             <div class="cart">
                 <img src="./img/88.png"  alt="图片"/>
-                <a href="../cart/cart.html">
+                <a href="http://localhost:8080:/project_xinxin_war_exploded/cart.do">
 					<span>
 					我的购物车
 					</span>
@@ -119,41 +134,69 @@
     <!-- shoes 内容-->
     <div class="w shoes">
         <ul>
-            <li>
-                <a href="detail.jsp?picture=12.jpg&name=Aj1糖果果冻">
-                    <img src="./img/shoes-boutique/12.jpg" >
 
-                    <p>Aj1糖果果冻</p>
-                    <p>钩&nbsp;水晶底女子篮球鞋</p>
-                    <span>促销价：￥799.00元</span>
+                <%
+                    shopService service = new shopService();
+                if (session.getAttribute("e") != null){
+                    Idenitfity idenitfity = (Idenitfity) session.getAttribute("e");
+                    List<goods> goods1 = service.findAllGoods();
+                    for (goods goods2: goods1){
 
-                </a>
-            </li>
-            <li>
-                <a href="detail.jsp?picture=13.jpg&name=Aj1烟灰小Dior">
-                    <img src="./img/shoes-boutique/13.jpg" >
-                    <p>Air&nbsp;Jordan&nbsp;Mid&nbsp;Aj1烟灰小&nbsp;Dior</p>
-                    <p >灰白伯爵中帮</p>
-                    <span>新新价：￥1299.00元</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <img src="./img/shoes-boutique/14.jpg" >
 
-                    <p>AIR&nbsp;JORDAN&nbsp;1&nbsp;LOW&nbsp;AJ1&nbsp;黑白粉</p>
-                    <p>小情人节&nbsp;低帮</p>
-                    <span>促销价：￥648.00元</span>
 
+                %>
+                <li>
+                <a href="detail.do?picture=<%=goods2.getPic()%>&name=<%=goods2.getName()%>&user=<%=idenitfity.getUser()%>&price=799">
+                    <img src="./img/shoes-boutique/<%=goods2.getPic()%>" >
+
+                    <p><%=goods2.getName()%></p>
+                    <span>促销价：￥<%=goods2.getPrice()%>元</span>
 
                 </a>
-            </li>
+                </li>
+                <%
+                    }
+                    } else {
+                        List<goods> goods1 = service.findAllGoods();
+                        for (goods goods2: goods1){
+                    %>
+                <li>
+                <a href="detail.do?picture=<%=goods2.getPic()%>&name=<%=goods2.getName()%>&user=1&price=799">
+                    <img src="./img/shoes-boutique/<%=goods2.getPic()%>" >
+
+                    <p><%=goods2.getName()%></p>
+                    <span>促销价：￥<%=goods2.getPrice()%>元</span>
+
+                </a>
+                </li>
+                <%
+                    }
+                    }
+                %>
+<%--            <li>--%>
+<%--                <a href="detail.jsp?picture=13.jpg&name=Aj1烟灰小Dior&price=1299">--%>
+<%--                    <img src="./img/shoes-boutique/13.jpg" >--%>
+<%--                    <p>Air&nbsp;Jordan&nbsp;Mid&nbsp;Aj1烟灰小&nbsp;Dior</p>--%>
+<%--                    <p >灰白伯爵中帮</p>--%>
+<%--                    <span>新新价：￥1299.00元</span>--%>
+<%--                </a>--%>
+<%--            </li>--%>
+<%--            <li>--%>
+<%--                <a href="#">--%>
+<%--                    <img src="./img/shoes-boutique/14.jpg" >--%>
+
+<%--                    <p>AIR&nbsp;JORDAN&nbsp;1&nbsp;LOW&nbsp;AJ1&nbsp;黑白粉</p>--%>
+<%--                    <p>小情人节&nbsp;低帮</p>--%>
+<%--                    <span>促销价：￥648.00元</span>--%>
+
+
+<%--                </a>--%>
+<%--            </li>--%>
             <li>
                 <a href="#">
                     <img src="./img/shoes-boutique/15.jpg" >
 
                     <p>Air&nbsp;Jordan&nbsp;34&nbsp;Infrared&nbsp;23&nbsp;AJ34</p>
-                    <p>黑红激光&nbsp;特价</p>
                     <span>促销价：￥849.00元</span>
 
 
@@ -163,7 +206,6 @@
                 <img src="./img/shoes-boutique/16.jpg" >
 
                 <p>NikeAir&nbsp;More&nbsp;Uptempo&nbsp;皮蓬&nbsp;</p>
-                <p>熊猫&nbsp;大AIR&nbsp;情侣款款</p>
                 <span>促销价：￥1299.00元</span>
 
 
@@ -174,7 +216,6 @@
                     <img src="./img/shoes-boutique/17.jpg" >
 
                     <p>Nike&nbsp;Dunk&nbsp;LowSP&nbsp;Champ&nbsp;Colors</p>
-                    <p>芬达配色板鞋</p>
                     <span>新新价：￥1999.00元</span>
 
 
@@ -185,7 +226,6 @@
                     <img src="./img/shoes-boutique/18.jpg" >
 
                     <p>Air&nbsp;Jordan4&nbsp;AJ4&nbsp;2020白红&nbsp;</p>
-                    <p>金属扣&nbsp;篮球鞋</p>
                     <span>新新价：￥1499.00元</span>
 
 
@@ -196,7 +236,6 @@
                     <img src="./img/shoes-boutique/19.jpg" >
 
                     <p>Air&nbsp;Jordan&nbsp;1&nbsp;Low&nbsp;AJ1&nbsp;反转&nbsp;黑红</p>
-                    <p>禁&nbsp;穿&nbsp;低帮</p>
                     <span>促销价：￥4749.00元</span>
                 </a>
             </li>
@@ -205,7 +244,6 @@
                     <img src="./img/shoes-boutique/18.jpg" >
 
                     <p>Air&nbsp;Jordan4&nbsp;AJ4&nbsp;2020白红&nbsp;</p>
-                    <p>金属扣&nbsp;篮球鞋</p>
                     <span>新新价：￥1499.00元</span>
 
 
@@ -216,7 +254,6 @@
                     <img src="./img/shoes-boutique/14.jpg" >
 
                     <p>AIR&nbsp;JORDAN&nbsp;1&nbsp;LOW&nbsp;AJ1黑白粉</p>
-                    <p>小情人节&nbsp;低帮</p>
                     <span>促销价：￥648.00元</span>
 
 
@@ -404,7 +441,7 @@
         </ul>
         <ul class="tab-title">
             <li class="active"><input type="button" name="" id="" value="1" class="form"/></li>
-            <li><input type="button" name="" id="" value="2" class="form"/></li>
+            <li><input type="button" name="" value="2" class="form"/></li>
             <img src="./img/tab/06.gif" >
         </ul>
     </div>
@@ -598,5 +635,15 @@
 
 </script>
 </body>
+
+<script>
+    function jump(){
+        <%
+            session.removeAttribute("e");
+            session.invalidate();
+        %>
+        window.location.href = "index.jsp"
+    }
+</script>
 </html>
 
