@@ -1,4 +1,7 @@
-<%--
+<%@ page import="com.ytb.project_xinxin.entity.cart" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.ytb.project_xinxin.service.shopService" %>
+<%@ page import="java.awt.*" %><%--
   Created by IntelliJ IDEA.
   User: 20716
   Date: 2022/12/10
@@ -82,34 +85,45 @@
             </tr>
             </thead>
             <tbody>
-            <%if (request.getParameter("user") != "1"){
+            <%if (!request.getParameter("user").equals("null")){
+
+            %>
+
+            <%
+                shopService service = new shopService();
+                List<cart> carts = service.findAllCart();
+                for (cart cart : carts){
 
             %>
             <tr style="background-color:white;" data-checked="1" >
+
                 <td ><i class="checkbox checked"></i></td>
+
                 <td >
-                    <img src="./img/shoes-boutique/<%=request.getParameter("pic")%>" />
+                    <img src="./img/shoes-boutique/<%=cart.getPic()%>" />
                 </td>
                 <td>
-                    <span class="name"><%=request.getParameter("name")%></span>
+                    <span class="name"><%=cart.getName()%></span>
                 </td>
                 <td>
-                    <span class="price">￥<%=request.getParameter("price")%>元</span>
+                    <span class="price">￥<%=cart.getPrice()%>元</span>
                 </td>
                 <td >
                     <input type="button" value="-" class="btn-decrease"/>
-                    <span class="count"><%=request.getParameter("number")%></span>
+                    <span class="count"><%=cart.getNumber()%></span>
                     <input type="button" value="+" class="btn-increase"/>
                 </td>
                 <td>
                     <i class="iconfont icon-clear-1" ></i>
                 </td>
+
             </tr>
+            <%}%>
             </tbody>
         </table>
         <div class="w finish">
             <span class="account-wrapper">合计（不计运费）：￥<span class="account"></span><%=request.getParameter("price")%>元</span>
-            <button class="settle" style="width: 100px;height: 100px;background-color: #ef2323;cursor: pointer " >结算 </button>
+            <button class="settle" style="width: 100px;height: 100px;background-color: #ef2323;cursor: pointer " onclick="myFunction()">结算 </button>
         </div>
         <%} else {
                 response.sendRedirect("login.do");
@@ -351,6 +365,17 @@
 <div class="footer-top">
     <a href="javascript:window.scrollTo(0,0)"><i class="iconfont icon-fanhuidingbu"></i>返回顶部</a>
 </div>
+<script>
+    function myFunction(){
+        <%if (!request.getParameter("user").equals("null")){%>
+            window.location.href="order.jsp?name=<%=request.getParameter("user")%>"
+            <%} else {%>
+            window.location.href="login.do"
+            <%}%>
+        }
+
+
+</script>
 <script type="text/javascript" src="../assets/js/jQuery-3.4.0.js">
 
 </script>
@@ -366,5 +391,6 @@
 <script type="text/javascript" src="./cart.js">
 </script>
 </body>
+
 </html>
 

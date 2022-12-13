@@ -1,11 +1,13 @@
 package com.ytb.project_xinxin.service;
 
 import com.ytb.project_xinxin.dao.cartDao;
+import com.ytb.project_xinxin.dao.orderDao;
 import com.ytb.project_xinxin.dao.shoesDao;
 import com.ytb.project_xinxin.entity.Idenitfity;
 import com.ytb.project_xinxin.dao.shopDao;
 import com.ytb.project_xinxin.entity.cart;
 import com.ytb.project_xinxin.entity.goods;
+import com.ytb.project_xinxin.entity.order;
 
 import java.util.List;
 
@@ -17,6 +19,7 @@ public class shopService {
     shopDao dao = new shopDao();
     shoesDao dao2 = new shoesDao();
     cartDao dao3 = new cartDao();
+    orderDao dao4 = new orderDao();
     public void add(Idenitfity idenitfity){
         dao.add(idenitfity);
     }
@@ -55,5 +58,12 @@ public class shopService {
 
     public List<cart> findAllCart(){
         return dao3.findAll();
+    }
+
+    public List<order> findByIdOrder(int id){
+        return dao4.findById(id);
+    }
+    public void add(order order){
+        dao4.add(order);
     }
 }

@@ -53,7 +53,7 @@ public class shopDao {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, idenitfity.getUser());
             preparedStatement.setString(2, idenitfity.getEmail());
-            preparedStatement.setString(3,idenitfity.getPwd());
+            preparedStatement.setString(3, idenitfity.getPwd());
 
             preparedStatement.executeUpdate();
 

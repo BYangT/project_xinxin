@@ -371,6 +371,7 @@
   // let num = document.querySelector(".w-content .form .two .three .count")
   // console.log(num.value)
   function jump(){
+
     let num = document.querySelector(".w-content .form .two .three .count")
     let herf = "cart.do?name=<%=request.getParameter("name")
       %>&pic=<%=request.getParameter("picture")%>&number="

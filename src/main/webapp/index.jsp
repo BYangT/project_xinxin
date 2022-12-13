@@ -161,7 +161,7 @@
                         for (goods goods2: goods1){
                     %>
                 <li>
-                <a href="detail.do?picture=<%=goods2.getPic()%>&name=<%=goods2.getName()%>&user=1&price=799">
+                <a href="detail.do?picture=<%=goods2.getPic()%>&name=<%=goods2.getName()%>&price=799">
                     <img src="./img/shoes-boutique/<%=goods2.getPic()%>" >
 
                     <p><%=goods2.getName()%></p>

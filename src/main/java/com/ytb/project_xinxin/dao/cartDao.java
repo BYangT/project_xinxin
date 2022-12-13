@@ -41,7 +41,6 @@ public class cartDao {
     }
         return carts;
     }
-
     public void add(cart cartObj){
         Connection connection = DBUtil.getConnection();
         String sql = "insert into cart (name,price,pic,number)values(?,?,?,?)";
@@ -60,7 +59,6 @@ public class cartDao {
             e.printStackTrace();
         }
     }
-
     public void delete(cart cartObj){
         Connection connection = DBUtil.getConnection();
 

@@ -4,6 +4,7 @@ package com.ytb.project_xinxin.servlet; /**
  */
 
 import com.ytb.project_xinxin.entity.Idenitfity;
+import com.ytb.project_xinxin.entity.cart;
 import com.ytb.project_xinxin.entity.goods;
 import com.ytb.project_xinxin.service.shopService;
 
@@ -58,6 +59,7 @@ public class shopServlet extends HttpServlet {
             session.setAttribute("e", idenitfity);
             resp.sendRedirect("index.jsp");
         }
+
         if (path.equals("/register")){
             Idenitfity idenitfity = new Idenitfity();
             req.getRequestDispatcher("register.jsp").forward(req,resp);
@@ -73,20 +75,27 @@ public class shopServlet extends HttpServlet {
             idenitfity.setPwd(pwd);
             service.add(idenitfity);
         }
+
         if (path.equals("/cart")){
-//            Object obj = session.getAttribute("e");
-//            if (obj == null){
-//                resp.sendRedirect("login.do");
-//                return;
-//            }
-//            req.getParameter("picture");
-//            String name = req.getParameter("name");
-//            req.setAttribute("goodsname", name);
-//            goods goods = service.findByName(name);
+            String name = req.getParameter("name");
+            String pic = req.getParameter("pic");
+            int number = Integer.parseInt(req.getParameter("number"));
+            int price = Integer.parseInt(req.getParameter("price"));
+
+            cart cart = new cart();
+            cart.setPic(pic);
+            cart.setName(name);
+            cart.setNumber(number);
+            cart.setPrice(price);
+
+            service.addCart(cart);
+
             req.getRequestDispatcher("cart.jsp").forward(req,resp);
         }
+
         if (path.equals("/detail")){;
             req.getRequestDispatcher("detail.jsp").forward(req,resp);
         }
+
     }
 }
