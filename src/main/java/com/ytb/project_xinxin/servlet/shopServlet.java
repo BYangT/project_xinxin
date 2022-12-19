@@ -97,5 +97,26 @@ public class shopServlet extends HttpServlet {
             req.getRequestDispatcher("detail.jsp").forward(req,resp);
         }
 
+        if (path.equals("/del")){
+            int id = Integer.parseInt(req.getParameter("id"));
+            service.delete(id);
+
+            resp.sendRedirect("/project_xinxin_war_exploded/system.jsp");
+        }
+
+        if (path.equals("/add")){
+            String uname = req.getParameter("uname");
+            String pwd = req.getParameter("pwd");
+            String email = req.getParameter("email");
+
+            Idenitfity idenitfity = new Idenitfity();
+            idenitfity.setUser(uname);
+            idenitfity.setPwd(pwd);
+            idenitfity.setEmail(email);
+
+            service.add(idenitfity);
+
+            resp.sendRedirect("/project_xinxin_war_exploded/system.jsp");
+        }
     }
 }

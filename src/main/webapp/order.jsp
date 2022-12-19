@@ -33,8 +33,8 @@
       <li class="second"><a href="#">X-KICKS&nbsp;APP</a></li>
     </ul>
     <ul class="header-right">
-      <li class="make"><a href="../login/login.html">登陆</a></li>
-      <li class="login"><a href="../sign_in/sign_in.html">注册</a></li>
+      <li class="make"><a href="login.do">登陆</a></li>
+      <li class="login"><a href="register.do">注册</a></li>
       <li>|</li>
       <li class="mi"><a href="../order_list/order_list.html">订单</a></li>
       <li class="mi"><a href="#">收藏</a></li>
@@ -51,21 +51,17 @@
     <li>
       <div >
         <input type="text" name="" id="" value="" /><input type="button" name="" id="" value="搜索" />
-
       </div>
     </li>
     <li>
       <div class="cart">
         <img src="./img/88.png" />
         <a href="cart.do">
-						<span>
-						我的购物车
-						</span>
+          <span>
+            我的购物车
+          </span>
         </a>
-
       </div>
-
-
     </li>
   </ul>
 </div>
@@ -257,20 +253,29 @@
 <script>
   function myFunc(){
     <%
+    //读取到用户名
     String name1 =  request.getParameter("name");
+    //读取到购物车里面所有的商品
     List<cart> carts1 = service.findAllCart();
+    //遍历输出购物车里面你所有商品，并把购物车里面的商品添加到订单表中
     for (cart cart : carts1){
       shopService service1 = new shopService();
+
       goods goods = service1.findByName(cart.getName());
+
       int idgoods = goods.getIdgoods();
+      //找到id
       Idenitfity idenitfity = service1.login(name1);
       int id = idenitfity.getId();
+      //建立订单对象
       order order = new order();
       order.setId(id);
       order.setIdgoods(idgoods);
       order.setNumber(cart.getNumber());
       order.setPrice(cart.getPrice());
+      //将购物车里面的商品添加到订单表
       service1.add(order);
+      //购物车表为一次性表，每次取完值清空
       service1.delete(cart);
     }
     %>

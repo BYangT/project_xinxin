@@ -131,7 +131,7 @@
     </div>
     <!-- 热门推荐 -->
     <div class="w big-box">
-        <span>热门推荐</span><i class="iconfont icon-rementuijian"></i>
+        <span>热门推荐</span><i class="iconfont icon-rementuijian" ></i>
         <div class="w shoes">
 
             <ul>

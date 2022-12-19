@@ -108,4 +108,22 @@ public class shopDao {
         }
         return idenitfity;
     }
+
+    public void delete(int id){
+
+        Connection con = DBUtil.getConnection();
+
+        String sql = "delete from identifity where id =?";
+
+        try {
+            //连接数据库
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            //填入id
+            preparedStatement.setInt(1,id);
+            //执行完毕
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

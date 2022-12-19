@@ -66,4 +66,8 @@ public class shopService {
     public void add(order order){
         dao4.add(order);
     }
+
+    public void delete(int id){
+        dao.delete(id);
+    }
 }

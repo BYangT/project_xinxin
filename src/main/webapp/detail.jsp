@@ -124,9 +124,9 @@
             <input style="margin-top: 10px;margin-bottom:20px;float:left;width: 43px;height: 44px;" type="text" name="number" id="number" value="1" class="count" />
             <p style="float:left;display:inline-block;height:45;width:17px;">
               <input style="margin-top: 10px;width: 17px;height: 24px;background-color: #f1f1f1;color:#666666;font-size: 12px;outline: none;border:0;"
-                     type="button"  value="-" class="btn-decrease" />
+                     type="button"  value="-" class="btn-decrease" onclick="javascript:minus()"/>
               <input style="width: 17px;height: 24px;background-color:  #f1f1f1;color:#666666;;font-size: 14px;outline: none;border:0;"
-                     type="button" value="+" class="btn-increase" />
+                     type="button" value="+" class="btn-increase" onclick="javascript:plus()"/>
             </p>
             <input style="margin-top: 10px;margin-left:20px;width: 120px;height: 45px;background-color: red;outline: none;border:0;" type="submit"
                    onclick="javascript:jump()" value="加入购物车" class="btn-buy"/>
@@ -370,6 +370,9 @@
 <script>
   // let num = document.querySelector(".w-content .form .two .three .count")
   // console.log(num.value)
+  var num1 = document.querySelector(".w-content .form .two .three .count")
+  var count = 1
+
   function jump(){
 
     let num = document.querySelector(".w-content .form .two .three .count")
@@ -377,6 +380,17 @@
       %>&pic=<%=request.getParameter("picture")%>&number="
     let name = "&user=<%=request.getParameter("user")%>&price=<%=request.getParameter("price")%>"
     window.location.href = herf + num.value + name;
+  }
+  function plus(){
+
+    num1.value = ++count
+
+  }
+
+  function minus(){
+    if (num1.value > 1){
+      num1.value = --count
+    }
   }
 </script>
 </body>

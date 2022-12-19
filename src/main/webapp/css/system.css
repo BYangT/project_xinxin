@@ -1,0 +1,133 @@
+table.mt td{
+    background: no-repeat left top #fff;
+    padding: 5px 10px;
+    color: rgb(70,122,167);
+    border-top: 1px solid #CBD6DE;
+    border-bottom: 1px solid #ADBECB;
+    font-weight: bold;
+    box-shadow: rgba(187, 187, 187, 1) 0 0px 20px -1px;
+    -webkit-border-radius: 10px;
+    max-width: 500px;
+    font: 12px Arial, Helvetica, sans-serif;
+
+}
+table.mt {
+    margin-bottom: 15px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.all1{
+    margin-left:auto;
+
+    margin-right:auto;
+
+    max-width: 500px;
+
+    background: #FFF;
+
+    padding: 30px 30px 20px 30px;
+
+    box-shadow: rgba(187, 187, 187, 1) 0 0px 20px -1px;
+
+    -webkit-box-shadow: rgba(187, 187, 187, 1) 0 0px 20px -1px;
+
+    font: 12px Arial, Helvetica, sans-serif;
+
+    color: #666;
+
+    border-radius: 10px;
+
+    -webkit-border-radius: 10px;
+}
+
+.all1 h1{
+    font: 24px "Trebuchet MS", Arial, Helvetica, sans-serif;
+
+    padding: 0px 0px 10px 40px;
+
+    display: block;
+
+    border-bottom: 1px solid #F5F5F5;
+
+    margin: -10px -30px 10px -30px;
+
+    color: #969696;
+}
+.all1 h1>span{
+
+    display: block;
+
+    font-size: 11px;
+
+    color: #C4C2C2;
+}
+
+.all1 .inputgri{
+    color: #555;
+    width: 70%;
+    padding: 3px 0px 3px 5px;
+    margin-top: 2px;
+    margin-right: 6px;
+    margin-bottom: 16px;
+    border: 1px solid #e5e5e5;
+    background: #fbfbfb;
+    height: 25px;
+    line-height:15px;
+    outline: 0;
+    -webkit-box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+    box-shadow: inset 1px 1px 2px rgba(200,200,200,0.2);
+
+
+}
+.all1 .form_table{
+    background: #FFF;
+}
+.all1 .button{
+    -moz-box-shadow:inset 0px 1px 0px 0px #000;
+
+    -webkit-box-shadow:inset 0px 1px 0px 0px #000;
+
+    box-shadow:inset 0px 1px 0px 0px #000;
+
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #000), color-stop(1, #000) );
+
+    background:-moz-linear-gradient( center top, #000, #000 );
+
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5bb0', endColorstr='#ef027d');
+
+    background-color:#000;
+
+    border-radius:9px;
+
+    -webkit-border-radius:9px;
+
+    -moz-border-border-radius:9px;
+
+    border:1px solid #000;
+
+    display:inline-block;
+
+    color:#ffffff;
+
+    font-family:Arial;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    font-style:normal;
+
+    height: 40px;
+
+    line-height: 30px;
+
+    width:100px;
+
+    text-decoration:none;
+
+    text-align:center;
+
+    text-shadow:1px 1px 0px #000;
+
+}
