@@ -3,6 +3,7 @@ package com.ytb.project_xinxin.dao;
 import com.ytb.project_xinxin.entity.cart;
 import com.ytb.project_xinxin.entity.goods;
 import com.ytb.project_xinxin.util.DBUtil;
+import org.jetbrains.annotations.NotNull;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -41,7 +42,7 @@ public class cartDao {
     }
         return carts;
     }
-    public void add(cart cartObj){
+    public void add(@NotNull cart cartObj){
         Connection connection = DBUtil.getConnection();
         String sql = "insert into cart (name,price,pic,number)values(?,?,?,?)";
 
@@ -59,7 +60,7 @@ public class cartDao {
             e.printStackTrace();
         }
     }
-    public void delete(cart cartObj){
+    public void delete(@NotNull cart cartObj){
         Connection connection = DBUtil.getConnection();
 
         String sql = "delete from cart where name = ?";

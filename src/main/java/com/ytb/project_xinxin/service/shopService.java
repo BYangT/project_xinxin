@@ -3,11 +3,8 @@ package com.ytb.project_xinxin.service;
 import com.ytb.project_xinxin.dao.cartDao;
 import com.ytb.project_xinxin.dao.orderDao;
 import com.ytb.project_xinxin.dao.shoesDao;
-import com.ytb.project_xinxin.entity.Idenitfity;
+import com.ytb.project_xinxin.entity.*;
 import com.ytb.project_xinxin.dao.shopDao;
-import com.ytb.project_xinxin.entity.cart;
-import com.ytb.project_xinxin.entity.goods;
-import com.ytb.project_xinxin.entity.order;
 
 import java.util.List;
 
@@ -69,5 +66,17 @@ public class shopService {
 
     public void delete(int id){
         dao.delete(id);
+    }
+
+    public void update(Idenitfity idenitfity){
+        dao.update(idenitfity);
+    }
+
+    public int findRows() {
+        return dao.findRows();
+    }
+
+    public List<Idenitfity> findByPage(page page){
+        return dao.findByPge(page);
     }
 }

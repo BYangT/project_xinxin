@@ -1,9 +1,11 @@
 package com.ytb.project_xinxin.dao;
 
 import java.sql.Connection;
+
 import com.ytb.project_xinxin.entity.order;
 import com.ytb.project_xinxin.util.DBUtil;
 import jdk.nashorn.internal.objects.annotations.Where;
+import org.jetbrains.annotations.NotNull;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -44,7 +46,7 @@ public class orderDao {
         return orders;
     }
 
-    public void add(order order){
+    public void add(@NotNull order order){
         Connection connection = DBUtil.getConnection();
         String sql = "insert into gidentifity (id,idgoods,number,price) values(?,?,?,?)";
 

@@ -1,7 +1,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.ytb.project_xinxin.entity.Idenitfity" %>
 <%@ page import="javax.xml.ws.Service" %>
-<%@ page import="com.ytb.project_xinxin.service.shopService" %><%--
+<%@ page import="com.ytb.project_xinxin.service.shopService" %>
+<%@ page import="com.ytb.project_xinxin.entity.page" %><%--
   Created by IntelliJ IDEA.
   User: 20716
   Date: 2022/12/19
@@ -85,8 +86,9 @@
         </tr>
 
         <%
-            shopService service = new shopService();
-            List<Idenitfity> idenitfities = service.findAll();
+//            shopService service = new shopService();
+            List<Idenitfity> idenitfities = (List<Idenitfity>) request.getAttribute("idens");
+
             for (Idenitfity idenitfity : idenitfities){
 
 
@@ -110,6 +112,38 @@
         </tr>
         <%}%>
     </table>
+
+    <%
+        page p = (page)request.getAttribute("page");
+        int cur = p.getCurrentPage();
+        int totalPage = p.getTotalPage();
+    %>
+<p id = "apid">
+    <%
+        if(cur != 1){
+    %>
+    <a href = "system.do?current=<%=cur-1 %>">上一页</a>
+
+    <%
+        }
+    %>
+    <%
+        for(int i=1;i<=totalPage;i++){
+    %>
+
+    <a href="system.do?current=<%=i%>"><%=i %></a>
+
+    <%
+        }
+    %>
+    <%
+        if(cur != totalPage){
+    %>
+    <a href = "system.do?current=<%=cur+1 %>">下一页</a>
+    <%
+        }
+    %>
+</p>
     <p>
          <input type="button" class="button" value="添加" onclick="location='add.jsp'"/>
     </p>

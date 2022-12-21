@@ -3,9 +3,11 @@ package com.ytb.project_xinxin.servlet; /**
  * @version 1.0
  */
 
+import com.sun.xml.internal.bind.v2.model.core.ID;
 import com.ytb.project_xinxin.entity.Idenitfity;
 import com.ytb.project_xinxin.entity.cart;
 import com.ytb.project_xinxin.entity.goods;
+import com.ytb.project_xinxin.entity.page;
 import com.ytb.project_xinxin.service.shopService;
 
 import javax.servlet.*;
@@ -13,6 +15,7 @@ import javax.servlet.http.*;
 import javax.xml.ws.Response;
 import javax.xml.ws.Service;
 import java.io.IOException;
+import java.util.List;
 
 public class shopServlet extends HttpServlet {
     @Override
@@ -101,7 +104,7 @@ public class shopServlet extends HttpServlet {
             int id = Integer.parseInt(req.getParameter("id"));
             service.delete(id);
 
-            resp.sendRedirect("/project_xinxin_war_exploded/system.jsp");
+            resp.sendRedirect("system.do");
         }
 
         if (path.equals("/add")){
@@ -116,7 +119,53 @@ public class shopServlet extends HttpServlet {
 
             service.add(idenitfity);
 
-            resp.sendRedirect("/project_xinxin_war_exploded/system.jsp");
+            resp.sendRedirect("system.do");
+        }
+
+        if (path.equals("/toUpdate")){
+            int id = Integer.parseInt(req.getParameter("id"));
+            Idenitfity idenitfity = service.findByIdIdenitfity(id);
+
+            req.setAttribute("iden", idenitfity);
+            req.getRequestDispatcher("update.jsp").forward(req, resp);
+        }
+
+        if (path.equals("/update")){
+            int id = Integer.parseInt(req.getParameter("id"));
+            String name = req.getParameter("name");
+            String email = req.getParameter("email");
+            String pwd = req.getParameter("pwd");
+
+            Idenitfity idenitfity =new Idenitfity();
+            idenitfity.setUser(name);
+            idenitfity.setEmail(email);
+            idenitfity.setPwd(pwd);
+            idenitfity.setId(id);
+
+            service.update(idenitfity);
+            resp.sendRedirect("system.do");
+        }
+
+        if (path.equals("/system")){
+            //获取浏览器端传递的参数 要查询的页数
+            String current = req.getParameter("current");
+
+            page page = new page();
+            //找到总行数
+            int rows = service.findRows();
+            page.setRows(rows);
+            //判断当前页是否为空
+            if (current != null) {
+                int cur = Integer.parseInt(current);
+                page.setCurrentPage(cur);
+            }
+            //每一页的员工信息
+            List<Idenitfity> idenitfities = service.findByPage(page);
+            //绑定到request对象上
+            req.setAttribute("idens", idenitfities);
+            req.setAttribute("page", page);
+            //转发
+            req.getRequestDispatcher("system.jsp").forward(req, resp);
         }
     }
 }
