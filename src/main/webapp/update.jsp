@@ -61,12 +61,9 @@
     <p><img src="./img/line/92.png" ></p>
 </div>
 
-<div id="wrap">
-    <div id="top_content">
-        <div id="content">
-            <p id="whereami">
-            </p>
-            <h1>
+<div id="wrap" class="all1">
+
+            <h1 >
                 修改员工信息:
             </h1>
             <form action="update.do" method="post">
@@ -75,10 +72,10 @@
                 %>
 
                 <table cellpadding="0" cellspacing="0" border="0"
-                       class="form_table">
+                       class="mt2">
                     <tr>
                         <td valign="middle" align="right">
-                            id:
+                            id:<%=idenitfity.getId()%>
                         </td>
                         <td valign="middle" align="left">
 
@@ -114,8 +111,6 @@
                     <input type="submit" class="button" value="Confirm" />
                 </p>
             </form>
-        </div>
-    </div>
 </div>
 </body>
 </html>

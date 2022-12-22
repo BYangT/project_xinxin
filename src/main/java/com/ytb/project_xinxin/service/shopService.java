@@ -79,4 +79,7 @@ public class shopService {
     public List<Idenitfity> findByPage(page page){
         return dao.findByPge(page);
     }
+    public boolean findByUser1(String user){
+        return dao.findByUser1(user);
+    }
 }

@@ -8,6 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"  %>
 <%@ page import="com.ytb.project_xinxin.entity.Idenitfity" %>
 <%@ page import="com.ytb.project_xinxin.service.shopService" %>
+<%@ page import="javafx.scene.control.Alert" %>
+<%@ page import="javax.xml.ws.Service" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -111,7 +113,6 @@
       alert("两次输入的密码不相同");
       return false;
     } else {
-      alert('注册成功！！！！');
       return true;
     }
   }

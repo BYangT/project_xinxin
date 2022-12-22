@@ -124,7 +124,6 @@
     </div>
   </div>
   <div class="bottom-list">
-    <span>总金额：￥<span class="account"></span>元</span>
     <input type="button" name="" id="" value="生成订单" onclick="myFunc()" class="btn-confirm" />
   </div>
 

@@ -15,6 +15,7 @@ import javax.servlet.http.*;
 import javax.xml.ws.Response;
 import javax.xml.ws.Service;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 public class shopServlet extends HttpServlet {
@@ -35,11 +36,22 @@ public class shopServlet extends HttpServlet {
             Idenitfity idenitfity = service.login(user);
             if (idenitfity == null){
                 if (req.getParameter("user11")!=null && req.getParameter("email11")!=null &&req.getParameter("pwd11")!=null){
-                    Idenitfity idenitfity1 = new Idenitfity();
-                    idenitfity1.setUser(req.getParameter("user11"));
-                    idenitfity1.setEmail(req.getParameter("email11"));
-                    idenitfity1.setPwd(req.getParameter("pwd11"));
-                    service.add(idenitfity1);
+                    if (service.findByUser1(req.getParameter("user11"))) {
+                        resp.setContentType("text/html; charset=UTF-8");
+                        PrintWriter out = resp.getWriter();
+                        out.println("<script>");
+                        out.println("alert('此用户已存在，请重新输入');");
+                        out.println("history.back();");
+                        out.println("</script>");
+                        return;
+                    } else {
+                        Idenitfity idenitfity1 = new Idenitfity();
+                        idenitfity1.setUser(req.getParameter("user11"));
+                        idenitfity1.setEmail(req.getParameter("email11"));
+                        idenitfity1.setPwd(req.getParameter("pwd11"));
+                        service.add(idenitfity1);
+                    }
+
                 }
                 req.setAttribute("umsg", "用户名错误错误");
                 req.getRequestDispatcher("login.jsp").forward(req, resp);
@@ -59,8 +71,13 @@ public class shopServlet extends HttpServlet {
                 return;
             }
             //登陆对象的数据绑定到session对象中
-            session.setAttribute("e", idenitfity);
-            resp.sendRedirect("index.jsp");
+            if (user.equals("system")){
+                resp.sendRedirect("system.do");
+            } else {
+                session.setAttribute("e", idenitfity);
+                resp.sendRedirect("index.jsp");
+            }
+
         }
 
         if (path.equals("/register")){

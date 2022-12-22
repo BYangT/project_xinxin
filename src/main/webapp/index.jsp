@@ -46,7 +46,7 @@
             <li class="login"><a href="http://localhost:8080/project_xinxin_war_exploded/register.do">注册</a></li>
             <%}%>
             <li>|</li>
-            <li class="mi"><a href="../order_list/order_list.html">订单</a></li>
+            <li class="mi"><a href="cart.jsp">订单</a></li>
             <li class="mi"><a href="#">收藏</a></li>
             <li class="mi"><a href="#">帮助中心</a></li>
             <li class="mi"><a href="#">收藏新新</a></li>

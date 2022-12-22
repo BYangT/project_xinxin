@@ -109,9 +109,9 @@
                     <span class="price">￥<%=cart.getPrice()%>元</span>
                 </td>
                 <td >
-                    <input type="button" value="-" class="btn-decrease"/>
+<%--                    <input type="button" value="-" class="btn-decrease"/>--%>
                     <span class="count"><%=cart.getNumber()%></span>
-                    <input type="button" value="+" class="btn-increase"/>
+<%--                    <input type="button" value="+" class="btn-increase"/>--%>
                 </td>
                 <td>
                     <i class="iconfont icon-clear-1" ></i>
@@ -122,7 +122,7 @@
             </tbody>
         </table>
         <div class="w finish">
-            <span class="account-wrapper">合计（不计运费）：￥<span class="account"></span><%=request.getParameter("price")%>元</span>
+            <span class="account-wrapper">合计（不计运费）：￥<span class="account"></span><%=Integer.parseInt(request.getParameter("price"))*Integer.parseInt(request.getParameter("number"))%>元</span>
             <button class="settle" style="width: 100px;height: 100px;background-color: #ef2323;cursor: pointer " onclick="myFunction()">结算 </button>
         </div>
         <%} else {

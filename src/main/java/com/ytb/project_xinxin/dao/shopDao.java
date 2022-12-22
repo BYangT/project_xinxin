@@ -191,4 +191,21 @@ public class shopDao {
         }
         return idenitfities;
     }
+    public boolean findByUser1(String user){
+        //数据库连接
+        Connection connection = DBUtil.getConnection();
+
+        String sql = "select * from identifity where user=?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,user);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()){
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

@@ -23,7 +23,7 @@
         </ul>
         <ul class="header-right">
             <li class="make"><a href="#">登陆</a></li>
-            <li class="login"><a href="../sign_in/sign_in.html">注册</a></li>
+            <li class="login"><a href="register.do">注册</a></li>
             <li>|</li>
             <li class="mi"><a href="../order_list/order_list.html">订单</a></li>
             <li class="mi"><a href="#">收藏</a></li>
@@ -76,7 +76,7 @@
                 <span class="tai">记住登录状态</span>
                 <a class="m1" href="#">找回密码</a>
                 <p>|</p>
-                <a class="m2" href="../sign_in/sign_in.html">免费注册</a>
+                <a class="m2" href="register.do">免费注册</a>
             </div>
         </form>
         <h2 class="m3">合作账号登录</h2>
